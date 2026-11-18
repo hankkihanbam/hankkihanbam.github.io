@@ -328,3 +328,10 @@ a.ep:hover h4 { color: var(--gold); }
 .ic.on .ic-steps li:nth-child(6) { transition-delay: 1s; } .ic.on .ic-steps li:nth-child(7) { transition-delay: 1.2s; }
 @media (max-width: 600px) { .ic-chain { flex-direction: column; } .ic-chain .ar { transform: rotate(90deg); align-self: center; } .ic-steps li { grid-template-columns: 74px 1fr; } }
 @media (prefers-reduced-motion: reduce) { .mk, .ic-chain .w, .ic-chain .ar, .ic-steps li { transition: none; opacity: 1; transform: none; } }
+
+/* 방문자 숫자 칸 (2026-11-19) */
+.visits { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font-size: 13.5px; white-space: nowrap; opacity: .4; transition: opacity .6s; }
+.visits.on { opacity: 1; }
+.visits b { color: var(--gold); font-family: var(--serif); font-size: 15px; font-variant-numeric: tabular-nums; }
+.visits .sep { color: var(--line); }
+.visits i { font-style: normal; }
