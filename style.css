@@ -335,3 +335,7 @@ a.ep:hover h4 { color: var(--gold); }
 .visits b { color: var(--gold); font-family: var(--serif); font-size: 15px; font-variant-numeric: tabular-nums; }
 .visits .sep { color: var(--line); }
 .visits i { font-style: normal; }
+
+/* 글 속 쇼츠 영상 */
+.short{max-width:340px;margin:40px auto 8px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.short iframe{width:100%;height:100%;border:0;display:block}
