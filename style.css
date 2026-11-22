@@ -349,3 +349,7 @@ a.ep:hover h4 { color: var(--gold); }
   .ic-chain .w small { font-size: 13px; text-align: right; }
   .ic-chain .ar { font-size: 14px; line-height: 1; }
 }
+
+/* 홈: 음식 / 순례길 두 줄 */
+.shelf-head{font-family:var(--serif);font-size:22px;margin:56px 0 18px;padding-top:22px;border-top:1px solid rgba(243,230,204,.14)}
+.shelf-head + .shelf{margin-bottom:8px}
