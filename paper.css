@@ -143,3 +143,6 @@ footer .visits b { color: #f2c14e; }
 .compare div, .route { border-radius: 3px; }
 .short { border-radius: 6px; }
 .prose h2 { letter-spacing: -.01em; }
+
+/* 사진 3장 줄에 그림이 바로 들어간 글(5편 등): 정사각형으로 맞추기 (휴대폰에서 길쭉하게 늘어나던 문제) */
+.shots > img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 4px; display: block; }
