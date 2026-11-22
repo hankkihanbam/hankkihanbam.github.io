@@ -254,6 +254,8 @@ footer .credit { flex-basis: 100%; font-size: 12px; color: var(--dim); }
 .cat ul { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px; }
 .cat li { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: rgba(243, 230, 204, .07); color: var(--muted); }
 .cat li a { color: var(--candle); }
+.cat li:has(> a) { padding: 0; }
+.cat li > a { display: block; padding: 7px 12px; } /* 누르는 칸을 알약 전체로 */
 .cat li a:hover { text-decoration: underline; }
 .cat li.soon { background: none; padding-left: 0; color: var(--dim); font-style: italic; }
 @media (max-width: 1100px) { .cats { grid-template-columns: repeat(2, 1fr); } }
