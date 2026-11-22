@@ -1,0 +1,103 @@
+/* 한끼한밤 종이판 (2026-11-23)
+   AI 티 걷어내기: 어두운 화면+주황 빛 번짐 → 밝은 종이 위 잉크 · 기울인 영문 장식 없음 · 작은 영문 머리글 없음
+   · 똑같은 카드 네 장 대신 책 목차처럼 줄 · 그림자·빛 번짐 없음. 밤(한밤)은 맨 아래 띠 하나로만 */
+:root {
+  --bg: #fbfaf7;      /* 흰 종이 (베이지 배경은 AI 티라서 피함) */
+  --bg-2: #f3f0ea;
+  --card: #ece7de;
+  --line: #e0d8ca;
+  --cream: #2b2119;   /* 글자색(잉크) — 기존 이름 그대로 써서 모든 글에 한 번에 적용 */
+  --muted: #5b4a39;
+  --dim: #6e5c48;
+  --candle: #a63f25;  /* 고추 테라코타: 링크·버튼·강조 */
+  --gold: #9a5a14;    /* 큰 숫자·연도: 짙은 황토 */
+  --chili: #b0321f;
+  --paper: #ffffff;
+  --ink: #2b2119;
+  --night: #1d1712;
+}
+html { background: var(--bg); }
+::selection { background: #e9c9a6; }
+
+/* 상단 */
+.top { background: rgba(251,250,247,.94); backdrop-filter: none; border-bottom: 1px solid var(--line); }
+.nav a { color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+
+/* 버튼: 빛 번짐 없이 한 단계 올라가기만 */
+.btn { background: var(--candle); color: #fff8ee; border-radius: 6px; }
+.btn:hover { background: #8f3720; box-shadow: none; color: #fff8ee; }
+.btn.ghost { color: var(--ink); box-shadow: inset 0 0 0 1px #b9a688; }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1px var(--ink); background: rgba(43,33,25,.05); color: var(--ink); }
+
+/* 첫 화면: 영문 작은 머리글·기울인 영문 없앰 */
+.hero .eyebrow { display: none; }
+.hero h1 { margin-top: 0; }
+.hero h1 em { color: var(--candle); }
+.hero-side .latin { font-family: var(--serif); font-style: normal; font-size: 15px; color: var(--dim); letter-spacing: 0; }
+.article-hero .tag, .tag { letter-spacing: .02em; color: var(--candle); }
+
+/* 섹션 */
+.sec.alt { background: var(--bg-2); }
+.giant .dot { color: var(--candle); animation: none; }
+.giant-sub b { color: var(--candle); }
+.close .candle { animation: none; }
+
+/* 네 가지 이야기: 카드 네 장 → 책 목차처럼 위 줄 하나 */
+.cat { background: none; border: 0; border-top: 2px solid var(--ink); border-radius: 0; padding: 22px 0 0; }
+.cat:hover { transform: none; border-color: var(--candle); }
+.cat img { border-radius: 4px; box-shadow: none; width: 96px; height: 96px; }
+.cat ul { border-top: 1px solid var(--line); }
+.cat li { background: none; padding: 0; }
+.cat li > a { padding: 6px 10px 6px 0; text-decoration: underline; text-decoration-color: #d8b9a6; text-underline-offset: 4px; }
+.cat li > a:hover { text-decoration-color: var(--candle); }
+
+/* 이야기 목록 */
+.row { border-bottom: 1px solid var(--line); border-radius: 0; }
+.row:hover { background: rgba(43,33,25,.04); transform: none; }
+.row .thumb { border-radius: 4px; background: var(--card); }
+.row b { color: var(--ink); }
+.shelf-head { border-top: 2px solid var(--ink); }
+.more { border-color: #b9a688; color: var(--ink); border-radius: 6px; }
+.more:hover { background: rgba(43,33,25,.05); }
+.frame, .shot { border-radius: 4px; background: var(--card); }
+
+/* 글 본문 */
+.prose strong { color: var(--ink); background: linear-gradient(transparent 62%, #efd3a9 62%); }
+.prose p a:not(.btn) { color: var(--candle); text-decoration: underline; text-underline-offset: 3px; }
+.box li a { color: var(--ink); }
+.box li a:hover { color: var(--candle); }
+.lead { color: var(--ink); }
+.quote { background: var(--paper); border-left: 3px solid var(--candle); border-radius: 0; }
+.route { background: var(--night); color: #f3e6cc; }
+.route span { background: rgba(243,230,204,.14); }
+.route i { color: #f0a04b; }
+.compare div { color: #f7eddb; }
+.compare small { color: #f7eddb; }
+.skip { color: #fff8ee; }
+.timeline li::before { box-shadow: none; }
+.box { background: var(--paper); border-color: var(--line); border-radius: 4px; }
+.box.en p { font-family: var(--serif); font-size: 17px; color: var(--ink); }
+.ending { color: var(--dim); }
+
+/* 정보 카드: 그라데이션·빛 대신 흰 종이 카드 */
+.ic { background: var(--paper); border-color: var(--line); border-radius: 8px; }
+.ic .chip { background: rgba(43,33,25,.07); color: var(--muted); }
+.ic .chip.on { background: var(--ink); color: #fbfaf7; }
+.ic-chain .w { background: rgba(43,33,25,.045); }
+.ic-chain .w.last { background: #f3e1c8; box-shadow: inset 0 0 0 1px #d9a873; }
+.ic-num p, .ic-steps p { color: var(--ink); }
+.ic-rows div { background: rgba(43,33,25,.045); }
+.ic-rows div.o { box-shadow: inset 0 0 0 1px #d9a873; }
+
+/* 방문자 칸·쇼츠 */
+.visits { background: transparent; }
+.short { box-shadow: none; border-radius: 10px; }
+
+/* 맨 아래: 밤 띠 하나 */
+footer { background: var(--night); color: #b8a68a; border-top: 0; }
+footer a { color: #e7d7bb; }
+footer a:hover { color: #fff; }
+footer .credit { color: #a8957b; }
+footer .visits { border-color: #3a2a1c; color: #b8a68a; }
+footer .visits b { color: #f2c14e; }
