@@ -366,3 +366,8 @@ a.ep:hover h4 { color: var(--gold); }
 .row b{font-family:var(--serif);font-size:17.5px;line-height:1.35;color:var(--cream);font-weight:700}
 .row small{font-size:13.5px;color:var(--dim)}
 @media (max-width:760px){.list{grid-template-columns:1fr}.row .thumb{flex-basis:72px;width:72px;height:72px}.row b{font-size:16.5px}}
+
+.row[hidden]{display:none}
+.more{display:block;margin:18px auto 0;min-height:44px;padding:10px 26px;border-radius:999px;border:1px solid rgba(243,230,204,.25);background:transparent;color:var(--cream);font:inherit;font-size:15px;cursor:pointer;transition:background .25s var(--ease),transform .15s}
+.more:hover{background:rgba(243,230,204,.08)}
+.more:active{transform:scale(.97)}
