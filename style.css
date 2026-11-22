@@ -8,7 +8,7 @@
   --line: #3a2a1c;
   --cream: #f3e6cc;
   --muted: #b8a68a;
-  --dim: #8a7760;
+  --dim: #a8957b;
   --candle: #f0a04b;
   --gold: #f2c14e;
   --chili: #e2493a;
@@ -173,7 +173,7 @@ footer { border-top: 1px solid var(--line); padding: 32px 0 44px; font-size: 13.
 footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
 footer a { color: var(--muted); }
 footer a:hover { color: var(--cream); }
-footer .credit { flex-basis: 100%; font-size: 12px; color: #6f604d; }
+footer .credit { flex-basis: 100%; font-size: 12px; color: var(--dim); }
 
 /* ---------- 글 본문 ---------- */
 .article-hero { padding: clamp(48px, 9vh, 96px) 0 40px; }
