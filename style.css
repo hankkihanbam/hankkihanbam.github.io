@@ -285,7 +285,7 @@ a.ep { display: block; color: inherit; text-decoration: none; }
 a.ep:hover h4 { color: var(--gold); }
 
 /* ── 정보 카드 (2026-11-19, 유튜브 정보 카드형 모션그래픽과 같은 결) ── */
-.ic { margin: 36px 0; padding: 26px clamp(18px, 4vw, 30px); border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(180deg, #2a1f16, var(--card)); }
+.ic { margin: 36px 0; padding: 26px clamp(18px, 4vw, 30px); border: 1px solid var(--line); border-radius: 14px; background: transparent; }
 .ic .chip { display: inline-block; padding: 5px 12px; border-radius: 999px; background: rgba(243,230,204,.1); color: var(--muted); font-size: 13.5px; font-weight: 600; }
 .ic .chip.on { background: var(--gold); color: #2a1d13; }
 .ic-head { font-family: var(--serif); font-size: 18px; color: var(--cream); margin: 0 0 16px; }
