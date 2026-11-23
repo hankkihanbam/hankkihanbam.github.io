@@ -3,14 +3,14 @@ import re,glob,json,subprocess,html
 B='https://hankkihanbam.github.io'
 TITLES={ # 검색 탭 제목(본문 제목 h1은 그대로)
 'index.html':'순례자의 한끼한밤 | 산티아고 순례길·포르투갈 음식 이야기',
-'posts/01-tteokbokki.html':'떡볶이가 빨개진 이유, 고추와 포르투갈 | 한끼한밤',
-'posts/02-castella.html':'카스텔라 유래, 400살 포르투갈 빵 | 한끼한밤',
-'posts/03-eggtart.html':'에그타르트 유래, 189년째 비밀 | 한끼한밤',
+'posts/01-tteokbokki.html':'떡볶이 유래, 원래 빨간 음식이 아니었다 | 한끼한밤',
+'posts/02-castella.html':'카스텔라 유래, 400년 전 바다를 건너온 빵 | 한끼한밤',
+'posts/03-eggtart.html':'에그타르트 유래, 1837년부터 지킨 레시피 | 한끼한밤',
 'posts/04-scallop.html':'순례자 가리비 의미, 천 년 동안 단 이유 | 한끼한밤',
-'posts/05-bread.html':"빵 어원, '빵'은 포르투갈 말 | 한끼한밤",
-'posts/06-arrow.html':'순례길 노란 화살표, 신부님이 그렸다 | 한끼한밤',
-'posts/07-tempura.html':"덴푸라 어원, '덴푸라'는 일본말이 아니다 | 한끼한밤",
-'posts/08-fisterra.html':'피스테라 0km, 산티아고 순례길의 진짜 끝 | 한끼한밤',
+'posts/05-bread.html':'빵 어원, 한 글자의 뿌리는 포르투갈 | 한끼한밤',
+'posts/06-arrow.html':'순례길 노란 화살표, 시작은 신부님 한 분 | 한끼한밤',
+'posts/07-tempura.html':'덴푸라 어원, 이름은 포르투갈에서 왔다? | 한끼한밤',
+'posts/08-fisterra.html':'피스테라 0km, 순례길의 진짜 끝은 산티아고가 아니다 | 한끼한밤',
 'posts/camino-01-meals.html':'산티아고 순례길 32일, 오늘 저녁은 뭘 먹지? | 한끼한밤',
 'posts/camino-02-albergue.html':'순례길 알베르게, 오늘은 어디서 자지? | 한끼한밤',
 'posts/camino-03-pyrenees.html':'순례길 첫날, 피레네를 하루 만에 넘은 날 | 한끼한밤',
@@ -22,7 +22,7 @@ def git(fmt,f,first=False):
     out=subprocess.run(['git','log',f'--format={fmt}','--',f],capture_output=True,text=True).stdout.split()
     return (out[-1] if first else out[0]) if out else None
 pub={'@type':'Organization','name':'순례자의 한끼한밤','url':B+'/','logo':{'@type':'ImageObject','url':B+'/images/profile.jpg'},
-     'sameAs':['https://www.youtube.com/@hankkihanbam','https://www.instagram.com/hankki_hanbam/']}
+     'sameAs':['https://www.youtube.com/channel/UC54aWAuI4aS1uYWHjAnIY-w','https://www.instagram.com/hankki_hanbam/']}
 for p in ['index.html']+sorted(glob.glob('posts/*.html')):
     s=open(p).read()
     url=B+'/' if p=='index.html' else f'{B}/{p}'
