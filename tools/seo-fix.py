@@ -16,11 +16,14 @@ TITLES={ # 검색 탭 제목(본문 제목 h1은 그대로)
 'posts/camino-03-pyrenees.html':'순례길 첫날, 피레네를 하루 만에 넘은 날 | 한끼한밤',
 'posts/camino-04-meseta.html':'순례길 메세타, 밀밭에 20분 누워 있던 날 | 한끼한밤',
 'posts/camino-05-santiago.html':'순례길 32일째, 산티아고 도착과 순례자 증명서 | 한끼한밤',
+'posts/card-00-intro.html':'순례자의 한끼한밤 소개, 산티아고 순례길 800km 32일 | 한끼한밤',
 'posts/camino-tips.html':'산티아고 순례길 준비물·비용, 32일 걷고 정리 | 한끼한밤',
 }
 def git(fmt,f,first=False):
     out=subprocess.run(['git','log',f'--format={fmt}','--',f],capture_output=True,text=True).stdout.split()
-    return (out[-1] if first else out[0]) if out else None
+    if not out:  # 아직 커밋 안 한 새 글: 지금 시각
+        import datetime; return datetime.datetime.now().astimezone().replace(microsecond=0).isoformat()
+    return out[-1] if first else out[0]
 pub={'@type':'Organization','name':'순례자의 한끼한밤','url':B+'/','logo':{'@type':'ImageObject','url':B+'/images/profile.jpg'},
      'sameAs':['https://www.youtube.com/channel/UC54aWAuI4aS1uYWHjAnIY-w','https://www.instagram.com/hankki_hanbam/']}
 for p in ['index.html']+sorted(glob.glob('posts/*.html')):

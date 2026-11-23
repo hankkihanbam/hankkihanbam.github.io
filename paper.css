@@ -152,3 +152,29 @@ footer .visits b { color: #f2c14e; }
 /* 긴 영상(가로 16:9) 넣기 */
 .video169 { aspect-ratio: 16 / 9; margin: 32px 0; border-radius: 6px; overflow: hidden; background: #000; }
 .video169 iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+/* ── 정보 카드(인스타 캐러셀) 넘겨 보기 ── */
+.deck { width: 100%; max-width: 480px; justify-self: end; }
+.deck-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 6px; box-shadow: 0 0 0 1px var(--line); background: var(--card); outline-offset: 4px; }
+.deck-track::-webkit-scrollbar { display: none; }
+.deck-track img { flex: 0 0 100%; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; scroll-snap-align: start; }
+.deck-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; }
+.deck-btn { min-width: 48px; min-height: 44px; border: 1px solid #b9a688; border-radius: 6px; background: transparent; color: var(--ink); font: inherit; font-size: 17px; cursor: pointer; transition: background .2s, transform .15s; }
+.deck-btn:hover { background: rgba(43,33,25,.05); }
+.deck-btn:active { transform: scale(.96); }
+.deck-btn:disabled { opacity: .3; cursor: default; }
+.deck-mid { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.deck-count { font-size: 13.5px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.deck-dots { display: flex; gap: 6px; }
+.deck-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.deck-dots i.on { background: var(--candle); }
+@media (max-width: 900px) { .deck { justify-self: start; max-width: 520px; } }
+
+/* 홈: 정보 카드 표지 줄 (옆으로 밀어 보기) */
+.cardrow { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 48px) / 4); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; scrollbar-width: thin; }
+.cardtile { display: block; scroll-snap-align: start; }
+.cardtile img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; box-shadow: 0 0 0 1px var(--line); transition: transform .4s var(--ease); }
+.cardtile:hover img { transform: translateY(-2px); }
+.cardtile b { display: block; font-family: var(--serif); font-size: 16.5px; line-height: 1.4; margin-top: 10px; color: var(--ink); }
+.cardtile small { display: block; font-size: 13px; color: var(--dim); margin-top: 2px; }
+@media (max-width: 760px) { .cardrow { grid-auto-columns: 62%; gap: 12px; } }

@@ -47,8 +47,7 @@ def series(cur):
         li.append(f'          <li><strong>{e(t)}</strong> (지금 읽는 글)</li>' if f == cur else f'          <li><a href="{f}.html">{e(t)}</a></li>')
     return '<ul>\n' + '\n'.join(li) + '\n        </ul>'
 
-slides = '\n'.join(f'      <div class="shot card"><img src="../{p}" width="900" height="1125" loading="lazy" alt="{alt(i)}"></div>'
-                   for i, p in enumerate(imgs) if i > 0)
+deckimgs = '\n'.join(f'            <img src="../{p}" width="900" height="1125" alt="{alt(i)}"' + (' fetchpriority="high">' if i == 0 else ' loading="lazy">') for i, p in enumerate(imgs))
 points = '\n'.join(f'          <li><span class="y">{i}</span><p>{e(t)}</p></li>' for i, t in enumerate(cfg.get('points', []), 1))
 body = '\n'.join(f'      <p>{e(t)}</p>' for t in cfg.get('body', []))
 tmpl = open('posts/05-bread.html').read()
@@ -59,6 +58,7 @@ head = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m: m.group(1
 head = re.sub(r'(<meta property="og:description" content=")[^"]*', lambda m: m.group(1) + e(cfg['lead']), head, 1)
 head = re.sub(r'(<meta property="og:image" content=")[^"]*', lambda m: m.group(1) + 'https://hankkihanbam.github.io/' + imgs[0], head, 1)
 foot = tmpl[tmpl.index('  <footer>'):]
+foot = foot.replace('<script src="../assets/info.js" defer></script>', '<script src="../assets/info.js" defer></script>\n  <script src="../assets/deck.js" defer></script>')
 foot = foot.replace('그림: 순례자의 한끼한밤 (AI로 그린 유화)', '그림: 순례자의 한끼한밤 (AI로 그린 유화, 글자는 직접)')
 
 page = f'''{head}</head>
@@ -82,15 +82,22 @@ page = f'''{head}</head>
           <h1>{e(cfg['title'])}</h1>
           <div class="meta">순례자의 한끼한밤 · {e(cfg.get('date', ''))} · 카드 {len(imgs)}장</div>
         </div>
-        <div class="frame"><img src="../{imgs[0]}" width="900" height="1125" alt="{alt(0)}" fetchpriority="high"></div>
+        <div class="deck">
+          <div class="deck-track" tabindex="0" aria-label="카드 {len(imgs)}장, 옆으로 넘겨 보기">
+{deckimgs}
+          </div>
+          <div class="deck-nav">
+            <button class="deck-btn deck-prev" type="button" aria-label="이전 카드">◀</button>
+            <div class="deck-mid"><span class="deck-count">1 / {len(imgs)}</span><span class="deck-dots"></span></div>
+            <button class="deck-btn deck-next" type="button" aria-label="다음 카드">▶</button>
+          </div>
+        </div>
       </div>
     </section>
 
     <article class="prose">
       <p class="lead">{e(cfg['lead'])}</p>
 {body}
-
-{slides}
 
       <div class="ic">
         <p class="ic-head">한눈에 정리</p>
@@ -111,7 +118,7 @@ page = f'''{head}</head>
         {series(slug)}
       </div>
 
-      <p class="ending">🕯️ 오늘 밤 이야기는 여기까지.<br>떠나기 전에 다시 볼 수 있게 저장해 두세요.</p>
+      <p class="ending">🕯️ 오늘 밤 이야기는 여기까지.<br>{e(cfg.get('ending', '필요할 때 다시 볼 수 있게 저장해 두세요.'))}</p>
     </article>
   </main>
 
@@ -125,24 +132,21 @@ for f, _ in cards:
     s = re.sub(r'(<h3>정보 카드</h3>\s*)<ul>.*?</ul>', lambda m: m.group(1) + series(f), s, 1, re.S)
     open(p, 'w').write(s)
 
-# 홈: '정보 카드' 목록 (없으면 순례길 연재 다음에 새로 만듦)
+# 홈: '정보 카드' 표지 줄 (새 카드가 맨 앞, 옆으로 밀어 보기)
 s = open('index.html').read()
-row = f'''          <a class="row" href="posts/{slug}.html">
-            <span class="thumb"><img src="{imgs[0]}" loading="lazy" alt=""></span>
-            <span class="txt"><span class="tag">카드</span><b>{e(cfg['title'])}</b><small>{e(cfg.get('summary', ''))}</small></span>
-          </a>'''
+tile = f'''          <a class="cardtile" href="posts/{slug}.html"><img src="{imgs[0]}" loading="lazy" alt=""><b>{e(cfg['title'])}</b><small>{e(cfg.get('summary', ''))}</small></a>'''
 if f'posts/{slug}.html' not in s:
     if 'id="cards-list"' not in s:
         anchor = s.index('</div>', s.index('<div class="list" data-limit="6">')) + len('</div>')
         block = f'''
 
-        <h3 class="shelf-head">정보 카드 <span>인스타에 올린 카드를 크게</span></h3>
-        <div class="list" id="cards-list" data-limit="6">
-{row}
+        <h3 class="shelf-head" id="cards">정보 카드 <span>인스타 카드, 옆으로 넘겨 보기</span></h3>
+        <div class="cardrow" id="cards-list">
+{tile}
         </div>'''
         s = s[:anchor] + block + s[anchor:]
     else:
-        i = s.index('id="cards-list"'); j = s.index('\n        </div>', i)
-        s = s[:j] + '\n' + row + s[j:]
+        i = s.index('>', s.index('id="cards-list"')) + 1
+        s = s[:i] + '\n' + tile + s[i:]
     open('index.html', 'w').write(s)
 print('만듦:', f'posts/{slug}.html', len(imgs), '장')
