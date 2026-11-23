@@ -178,3 +178,12 @@ footer .visits b { color: #f2c14e; }
 .cardtile b { display: block; font-family: var(--serif); font-size: 16.5px; line-height: 1.4; margin-top: 10px; color: var(--ink); }
 .cardtile small { display: block; font-size: 13px; color: var(--dim); margin-top: 2px; }
 @media (max-width: 760px) { .cardrow { grid-auto-columns: 62%; gap: 12px; } }
+
+/* 따라다니는 뒤로가기 버튼 (글 페이지) */
+.backbtn { position: fixed; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 30; display: inline-flex; align-items: center; gap: 6px; min-height: 48px; padding: 0 18px 0 14px; border-radius: 999px; background: rgba(251,250,247,.96); color: var(--ink); box-shadow: 0 0 0 1px #cfc3ae, 0 6px 18px rgba(43,33,25,.12); font-size: 15px; transition: transform .2s var(--ease), background .2s; }
+.backbtn span { font-size: 18px; line-height: 1; }
+.backbtn b { font-weight: 600; }
+.backbtn:hover { background: #fff; transform: translateY(-2px); }
+.backbtn:active { transform: scale(.96); }
+@media print { .backbtn { display: none; } }
+body:has(.backbtn) footer { padding-bottom: 96px; } /* 맨 아래 글자가 버튼에 가리지 않게 */
