@@ -17,6 +17,7 @@ TITLES={ # 검색 탭 제목(본문 제목 h1은 그대로)
 'posts/camino-04-meseta.html':'순례길 메세타, 밀밭에 20분 누워 있던 날 | 한끼한밤',
 'posts/camino-05-santiago.html':'순례길 32일째, 산티아고 도착과 순례자 증명서 | 한끼한밤',
 'posts/card-00-intro.html':'순례자의 한끼한밤 소개, 산티아고 순례길 800km 32일 | 한끼한밤',
+'posts/card-01-packing.html':'포르투갈길 준비물 체크리스트, 800km 걷고 정리 | 한끼한밤',
 'posts/camino-tips.html':'산티아고 순례길 준비물·비용, 32일 걷고 정리 | 한끼한밤',
 }
 def git(fmt,f,first=False):
