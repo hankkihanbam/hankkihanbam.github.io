@@ -2,7 +2,7 @@
 # 사용: python3 tools/build-site.py   (그다음 python3 tools/seo-fix.py && zsh tools/make-sitemap.sh)
 # 하는 일
 #  1) index.html 본문을 posts.json 순서(새 글 먼저)대로 새로 씀 — 주제(cats)별 목록, 글이 없는 주제는 숨김
-#  2) 각 글: 맨 위 작은 표시 = "주제 · 형식"(주제를 누르면 홈 그 주제로), 위 메뉴, 글 끝 '같은 주제의 다른 글' 상자
+#  2) 각 글: 맨 위 작은 표시 = "주제 · 형식"(주제를 누르면 홈 그 주제로), 위 메뉴, 글 끝 '이어서 읽기' 상자(같은 주제 먼저, 최대 3편)
 import json, os, re, html, datetime
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
@@ -139,7 +139,7 @@ for p in POSTS:
     same = [q for q in POSTS if q is not p and q['cat'] == p['cat']]
     other = [q for q in POSTS if q is not p and q['cat'] != p['cat'] and q['cat'] != 'about']
     pick = (same + other)[:3]
-    title = '같은 주제의 다른 글' if same else '다른 이야기'
+    title = '이어서 읽기'
     li = '\n'.join(f'''          <li><a href="{q['file']}.html">{e(q['title'])}</a> <span class="li-k">{kind(q)}</span></li>''' for q in pick)
     box = f'''<div class="box related">
         <h3>{title}</h3>
@@ -148,7 +148,7 @@ for p in POSTS:
         </ul>
         <p class="all"><a href="../#topics">모든 글 보기 →</a></p>
       </div>'''
-    s, n = re.subn(r'<div class="box(?: related)?">\s*<h3>(?:한끼한밤 이야기|함께 읽기|정보 카드|같은 주제의 다른 글|다른 이야기)</h3>.*?</div>', lambda m: box, s, 1, re.S)
+    s, n = re.subn(r'<div class="box(?: related)?">\s*<h3>(?:한끼한밤 이야기|함께 읽기|정보 카드|같은 주제의 다른 글|다른 이야기|이어서 읽기)</h3>.*?</div>', lambda m: box, s, 1, re.S)
     if not n:
         s = s.replace('      <p class="ending">', box + '\n\n      <p class="ending">', 1)
     open(f, 'w').write(s)
