@@ -7,7 +7,7 @@
 #  "alts":["1장 그림 설명", "..."], "en":"영어 한 줄", "ig":"https://www.instagram.com/p/...",
 #  "summary":"홈 목록 한 줄", "date":"2026년 11월"}
 # 하는 일: 장 그림을 900x1125로 줄여(위치정보 없음) assets/img/<slug>-N.jpg 로 저장,
-#          posts/<slug>.html 생성, 홈의 '정보 카드' 목록과 다른 카드 글의 목록 상자에 연결.
+#          posts/<slug>.html 생성, tools/posts.json 맨 앞에 추가(cat: food/camino/portugal, 기본 camino) → build-site.py로 홈·이어서 읽기 갱신.
 import json, os, re, sys, glob, subprocess, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -78,7 +78,7 @@ page = f'''{head}</head>
     <section class="article-hero">
       <div class="wrap" data-enter>
         <div>
-          <div class="tag">정보 카드 · 저장해 두고 보기</div>
+          <div class="tag">정보 카드</div>
           <h1>{e(cfg['title'])}</h1>
           <div class="meta">순례자의 한끼한밤 · {e(cfg.get('date', ''))} · 카드 {len(imgs)}장</div>
         </div>
@@ -114,8 +114,8 @@ page = f'''{head}</head>
       </div>
 
       <div class="box">
-        <h3>정보 카드</h3>
-        {series(slug)}
+        <h3>이어서 읽기</h3>
+        <ul></ul>
       </div>
 
       <p class="ending">🕯️ 오늘 밤 이야기는 여기까지.<br>{e(cfg.get('ending', '필요할 때 다시 볼 수 있게 저장해 두세요.'))}</p>
@@ -125,28 +125,13 @@ page = f'''{head}</head>
 {foot}'''
 open(f'posts/{slug}.html', 'w').write(page)
 
-# 다른 카드 글의 목록 상자 갱신
-for f, _ in cards:
-    if f == slug: continue
-    p = f'posts/{f}.html'; s = open(p).read()
-    s = re.sub(r'(<h3>정보 카드</h3>\s*)<ul>.*?</ul>', lambda m: m.group(1) + series(f), s, 1, re.S)
-    open(p, 'w').write(s)
-
-# 홈: '정보 카드' 표지 줄 (새 카드가 맨 앞, 옆으로 밀어 보기)
-s = open('index.html').read()
-tile = f'''          <a class="cardtile" href="posts/{slug}.html"><img src="{imgs[0]}" loading="lazy" alt=""><b>{e(cfg['title'])}</b><small>{e(cfg.get('summary', ''))}</small></a>'''
-if f'posts/{slug}.html' not in s:
-    if 'id="cards-list"' not in s:
-        anchor = s.index('</div>', s.index('<div class="list" data-limit="6">')) + len('</div>')
-        block = f'''
-
-        <h3 class="shelf-head" id="cards">정보 카드 <span>인스타 카드, 옆으로 넘겨 보기</span></h3>
-        <div class="cardrow" id="cards-list">
-{tile}
-        </div>'''
-        s = s[:anchor] + block + s[anchor:]
-    else:
-        i = s.index('>', s.index('id="cards-list"')) + 1
-        s = s[:i] + '\n' + tile + s[i:]
-    open('index.html', 'w').write(s)
+# 홈·글 연결은 tools/posts.json + build-site.py가 함 (2026-11-25 새 구성)
+P = json.load(open('tools/posts.json'))
+if not any(x['file'] == slug for x in P['posts']):
+    import datetime
+    P['posts'].insert(0, {"file": slug, "cat": cfg.get('cat', 'camino'), "kind": "card", "len": f"{len(imgs)}장",
+        "date": cfg.get('day', datetime.date.today().isoformat()), "title": cfg['title'], "sub": cfg.get('summary', ''),
+        "thumb": f"{slug}-1.jpg"})
+    json.dump(P, open('tools/posts.json', 'w'), ensure_ascii=False, indent=2)
+subprocess.run(['python3', 'tools/build-site.py'], check=True)
 print('만듦:', f'posts/{slug}.html', len(imgs), '장')
