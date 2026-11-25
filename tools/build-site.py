@@ -36,7 +36,9 @@ cnt = {c: sum(1 for p in POSTS if p['cat'] == c) for c in CATS}
 shown = [c for c in D['cats'] if cnt[c['id']]]
 new = POSTS[0]
 jump = '\n'.join(f'''          <a href="#{c['id']}"><b>{e(c['name'])}</b><span>{cnt[c['id']]}편</span></a>''' for c in shown)
-navs = '\n'.join(f'''        <a href="#{c['id']}">{e(c.get('short', c['name']))}</a>''' for c in shown)
+_seen = {}
+for c in shown: _seen.setdefault(c.get('short', c['name']), c['id'])
+navs = '\n'.join(f'''        <a href="#{i}">{e(k)}</a>''' for k, i in _seen.items())
 topics = []
 for c in shown:
     rows = '\n'.join(row(p) for p in POSTS if p['cat'] == c['id'])
