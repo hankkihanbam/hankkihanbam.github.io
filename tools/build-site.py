@@ -31,12 +31,12 @@ def row(p, pre=''):
 
 # ── 1) 홈 ──
 idx = open('index.html').read()
-head = idx[:idx.index('<body>')]
+head = idx[:idx.index('<body')]
 cnt = {c: sum(1 for p in POSTS if p['cat'] == c) for c in CATS}
 shown = [c for c in D['cats'] if cnt[c['id']]]
 new = POSTS[0]
 jump = '\n'.join(f'''          <a href="#{c['id']}"><b>{e(c['name'])}</b><span>{cnt[c['id']]}편</span></a>''' for c in shown)
-navs = '\n'.join(f'''        <a href="#{c['id']}">{e(c['name'].split()[-1] if c['id'] != 'food' else '음식 이야기')}</a>''' for c in shown)
+navs = '\n'.join(f'''        <a href="#{c['id']}">{e(c['name'].split()[-1] if c['id'] != 'food' else '음식')}</a>''' for c in shown)
 topics = []
 for c in shown:
     rows = '\n'.join(row(p) for p in POSTS if p['cat'] == c['id'])
