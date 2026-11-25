@@ -1,16 +1,75 @@
 {
-  "_설명": "블로그에 보이는 글 목록 = 유튜브·인스타에 실제로 올라간 것만. 새 글을 만들면 posts 맨 앞에 한 줄 넣고 python3 tools/build-site.py",
-  "cats": [
-    {"id": "food", "name": "음식에 담긴 역사", "desc": "매일 먹는 음식은 어디서 왔을까. 바다를 건너온 음식과 말의 이야기."},
-    {"id": "camino", "name": "산티아고 순례길", "desc": "2025년 프랑스길 800km, 32일. 직접 걷고 먹고 잔 기록과 준비 정보."},
-    {"id": "portugal", "name": "포르투갈", "desc": "언젠가 순례자 식당을 열 도시 포르투, 그리고 포르투갈 이야기."}
-  ],
-  "kinds": {"short": "1분 영상", "long": "긴 영상", "card": "정보 카드"},
-  "posts": [
-    {"file": "05-bread", "cat": "food", "kind": "short", "date": "2026-11-25", "title": "빵 한 글자의 뿌리는 포르투갈", "sub": "빠웅에서 팡, 그리고 빵이 되기까지", "thumb": "v3-bread-hero.jpg"},
-    {"file": "long-01-ramen", "cat": "camino", "kind": "long", "len": "4분", "date": "2026-11-24", "title": "순례길 32일, 제일 그리웠던 건 산꼭대기 라면", "sub": "순례자 메뉴부터 해발 1,400m 알베르게 라면까지", "thumb": "long01-hero.jpg"},
-    {"file": "card-01-packing", "cat": "camino", "kind": "card", "len": "7장", "date": "2026-11-24", "title": "포르투갈길 준비물, 800km 걷고 나서 알게 된 것들", "sub": "배낭 무게·신발·옷, 덜어낼 짐까지", "thumb": "card-01-packing-1.jpg"},
-    {"file": "01-tteokbokki", "cat": "food", "kind": "short", "date": "2026-11-23", "title": "떡볶이는 원래 빨간 음식이 아니었다", "sub": "조선 궁중 떡볶이는 간장색이었다", "thumb": "n01-hero.jpg"},
-    {"file": "card-00-intro", "cat": "about", "kind": "card", "len": "6장", "date": "2026-11-23", "title": "처음 오셨나요? 순례자의 한끼한밤", "sub": "누가, 무엇을, 언제 올리는지", "thumb": "card-00-intro-1.jpg"}
-  ]
+ "_설명": "블로그에 보이는 글 목록 = 유튜브·인스타에 실제로 올라간 것만. 새 글을 만들면 posts 맨 앞에 한 줄 넣고 python3 tools/build-site.py",
+ "cats": [
+  {
+   "id": "food",
+   "name": "음식에 담긴 역사",
+   "desc": "매일 먹는 음식은 어디서 왔을까. 바다를 건너온 음식과 말의 이야기."
+  },
+  {
+   "id": "camino",
+   "name": "산티아고 순례길",
+   "desc": "2025년 프랑스길 800km, 32일. 직접 걷고 먹고 잔 기록과 준비 정보."
+  },
+  {
+   "id": "portugal",
+   "name": "포르투갈",
+   "desc": "언젠가 순례자 식당을 열 도시 포르투, 그리고 포르투갈 이야기."
+  }
+ ],
+ "kinds": {
+  "short": "1분 영상",
+  "long": "긴 영상",
+  "card": "정보 카드"
+ },
+ "posts": [
+  {
+   "file": "05-bread",
+   "cat": "food",
+   "kind": "short",
+   "date": "2026-11-25",
+   "title": "빵 한 글자의 뿌리는 포르투갈",
+   "sub": "빠웅에서 팡, 그리고 빵이 되기까지",
+   "thumb": "n02-s1.jpg"
+  },
+  {
+   "file": "long-01-ramen",
+   "cat": "camino",
+   "kind": "long",
+   "len": "4분",
+   "date": "2026-11-24",
+   "title": "순례길 32일, 제일 그리웠던 건 산꼭대기 라면",
+   "sub": "순례자 메뉴부터 해발 1,400m 알베르게 라면까지",
+   "thumb": "long01-hero.jpg"
+  },
+  {
+   "file": "card-01-packing",
+   "cat": "camino",
+   "kind": "card",
+   "len": "7장",
+   "date": "2026-11-24",
+   "title": "포르투갈길 준비물, 800km 걷고 나서 알게 된 것들",
+   "sub": "배낭 무게·신발·옷, 덜어낼 짐까지",
+   "thumb": "card-01-packing-1.jpg"
+  },
+  {
+   "file": "01-tteokbokki",
+   "cat": "food",
+   "kind": "short",
+   "date": "2026-11-23",
+   "title": "떡볶이는 원래 빨간 음식이 아니었다",
+   "sub": "조선 궁중 떡볶이는 간장색이었다",
+   "thumb": "n01-hero.jpg"
+  },
+  {
+   "file": "card-00-intro",
+   "cat": "about",
+   "kind": "card",
+   "len": "6장",
+   "date": "2026-11-23",
+   "title": "처음 오셨나요? 순례자의 한끼한밤",
+   "sub": "누가, 무엇을, 언제 올리는지",
+   "thumb": "card-00-intro-1.jpg"
+  }
+ ]
 }
