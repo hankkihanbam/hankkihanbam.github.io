@@ -45,6 +45,15 @@
   },
   "posts": [
     {
+      "file": "07-tempura",
+      "cat": "food",
+      "kind": "short",
+      "date": "2026-11-28",
+      "title": "덴푸라, 이름은 포르투갈에서 왔다?",
+      "sub": "고기 먹지 않는 절기 템포라스에서 에도의 포장마차까지",
+      "thumb": "n04-s1.jpg"
+    },
+    {
       "file": "06-arrow",
       "cat": "camino-info",
       "kind": "short",
